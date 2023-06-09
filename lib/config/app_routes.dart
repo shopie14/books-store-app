@@ -1,4 +1,12 @@
+import 'package:book_tickets/modul/books_details/books_detail.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import '../models/author.dart';
+import '../models/books.dart';
+import '../modul/home/home_screen.dart';
+import '../modul/profile/profile_screen.dart';
+import '../modul/splashscreen/splash_screen.dart';
 
 class AppRoutes {
   static const String splash = 'splash';
@@ -20,14 +28,14 @@ class AppRoutes {
     BuildContext context,
     GoRouterState state,
   ) {
-    late Author user;
-    if (state.extra != null && state.extra is User) {
-      user = state.extra as User;
+    late Author author;
+    if (state.extra != null && state.extra is Author) {
+      author = state.extra as Author;
     } else {
-      user = User(
+      author = Author(
         id: 000,
         name: "No name",
-        userName: "no name",
+        authorName: "no name",
         email: "email@example.com",
         profileImage:
             "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png",
@@ -35,7 +43,7 @@ class AppRoutes {
       );
     }
     return CustomTransitionPage(
-      child: HomeScreen(key: state.pageKey, user: user),
+      child: HomeScreen(key: state.pageKey, author: author),
       transitionsBuilder: (context, animation, secondaryAnimation, child) =>
           FadeTransition(
         opacity: animation,
@@ -50,8 +58,8 @@ class AppRoutes {
   ) {
     if (state.params['id'] != null) {
       return MaterialPage(
-          child: NewsDetailScreen(
-        news: state.extra as News,
+          child: BooksDetails(
+        books: state.extra as Books,
       ));
     } else {
       return const MaterialPage(
@@ -67,21 +75,21 @@ class AppRoutes {
     BuildContext context,
     GoRouterState state,
   ) {
-    late User user;
-    if (state.extra != null && state.extra is User) {
-      user = state.extra as User;
+    late Author author;
+    if (state.extra != null && state.extra is Author) {
+      author = state.extra as Author;
     } else {
-      user = User(
+      author = Author(
         id: 000,
         name: "No name",
-        userName: "no name",
+        authorName: "no name",
         email: "email@example.com",
         profileImage:
             "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png",
         phoneNumber: "+123456789",
       );
     }
-    return MaterialPage(child: ProfileScreen(user: user));
+    return MaterialPage(child: ProfileScreen(author: author));
   }
 
   static final GoRouter goRouter = GoRouter(
