@@ -1,20 +1,19 @@
+import 'package:book_tickets/data/books_data.dart';
+import 'package:book_tickets/modul/books/books_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pertemuan_v/data/animes_data.dart';
+import '../../models/books.dart';
 
-import '../../models/anime.dart';
-import '../news/news_screen.dart';
-
-class HotNewsWidget extends StatefulWidget {
-  const HotNewsWidget({
+class HotBooks extends StatefulWidget {
+  const HotBooks({
     super.key,
   });
 
   @override
-  State<HotNewsWidget> createState() => _HotNewsWidgetState();
+  State<HotBooks> createState() => _HotBooksState();
 }
 
-class _HotNewsWidgetState extends State<HotNewsWidget> {
+class _HotBooksState extends State<HotBooks> {
   final PageController _pageController = PageController();
   int _pageIndex = 0;
   @override
@@ -22,7 +21,7 @@ class _HotNewsWidgetState extends State<HotNewsWidget> {
     return Column(
       children: [
         ListTile(
-          title: const Text("Hot News"),
+          title: const Text("Hot Books"),
           trailing: IconButton(
             icon: const Icon(
               Icons.arrow_forward_ios,
@@ -32,9 +31,9 @@ class _HotNewsWidgetState extends State<HotNewsWidget> {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                 return Scaffold(
                   appBar: AppBar(
-                    title: const Text("News"),
+                    title: const Text("Books"),
                   ),
-                  body: const NewsScreen(),
+                  body: const BooksScreen(),
                 );
               }));
             },
@@ -51,14 +50,14 @@ class _HotNewsWidgetState extends State<HotNewsWidget> {
               });
             },
             children:
-                hotNews.map((News news) => HotNewsCard(news: news)).toList(),
+                hotBooks.map((Books books) => HotBooks(books: books)).toList(),
           ),
         ),
         const SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(
-            hotNews.length,
+            hotBooks.length,
             (index) => DotWidget(_pageIndex, index),
           ),
         )
@@ -88,20 +87,20 @@ class DotWidget extends StatelessWidget {
   }
 }
 
-class HotNewsCard extends StatelessWidget {
-  News news;
-  HotNewsCard({super.key, required this.news});
+class Ho extends StatelessWidget {
+  Books books;
+  Ho({super.key, required this.books});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         GoRouter.of(context).pushNamed(
-          'news-detail',
+          'books-detail',
           params: {
-            'id': news.id.toString(),
+            'id': books.id.toString(),
           },
-          extra: news,
+          extra: books,
         );
       },
       child: Container(
@@ -112,7 +111,7 @@ class HotNewsCard extends StatelessWidget {
           image: DecorationImage(
             fit: BoxFit.cover,
             image: NetworkImage(
-              news.image!,
+              books.image!,
             ),
           ),
         ),
@@ -129,7 +128,7 @@ class HotNewsCard extends StatelessWidget {
                     colors: [Colors.transparent, Colors.black])),
             child: ListTile(
               title: Text(
-                news.title!,
+                books.title!,
                 maxLines: 2,
                 style: const TextStyle(
                     fontSize: 16,
@@ -137,7 +136,7 @@ class HotNewsCard extends StatelessWidget {
                     color: Colors.white),
               ),
               subtitle: Text(
-                news.description!,
+                books.description!,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(

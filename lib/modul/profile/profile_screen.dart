@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:pertemuan_v/models/user.dart';
+
+import '../../models/author.dart';
 
 class ProfileScreen extends StatefulWidget {
   ProfileScreen({
     super.key,
-    this.user,
+    this.author,
   });
-  User? user;
+  Author? author;
 
   @override
   State<ProfileScreen> createState() => _ProfilScreenState();
@@ -18,13 +19,13 @@ class _ProfilScreenState extends State<ProfileScreen> {
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   TextEditingController? _nameCtrl;
   TextEditingController? _emailCtrl;
-  TextEditingController? _usernameCtrl;
+  TextEditingController? _authornameCtrl;
 
   @override
   void initState() {
-    _nameCtrl = TextEditingController(text: widget.user!.name);
-    _usernameCtrl = TextEditingController(text: widget.user!.userName);
-    _emailCtrl = TextEditingController(text: widget.user!.email);
+    _nameCtrl = TextEditingController(text: widget.author!.name);
+    _authornameCtrl = TextEditingController(text: widget.author!.authorName);
+    _emailCtrl = TextEditingController(text: widget.author!.email);
     super.initState();
   }
 
@@ -32,7 +33,7 @@ class _ProfilScreenState extends State<ProfileScreen> {
   void dispose() {
     _nameCtrl!.dispose();
     _emailCtrl!.dispose();
-    _usernameCtrl!.dispose();
+    _authornameCtrl!.dispose();
     super.dispose();
   }
 
@@ -54,7 +55,8 @@ class _ProfilScreenState extends State<ProfileScreen> {
                     padding: const EdgeInsets.all(10.0),
                     child: CircleAvatar(
                       radius: 50,
-                      backgroundImage: NetworkImage(widget.user!.profileImage!),
+                      backgroundImage:
+                          NetworkImage(widget.author!.profileImage!),
                     ),
                   ),
                   Form(
@@ -86,7 +88,7 @@ class _ProfilScreenState extends State<ProfileScreen> {
                                 const SizedBox(width: 5),
                                 Flexible(
                                   child: TextFormField(
-                                    initialValue: "${widget.user!.id}",
+                                    initialValue: "${widget.author!.id}",
                                     enabled: false,
                                     textAlign: TextAlign.center,
                                     decoration: const InputDecoration(
@@ -101,10 +103,10 @@ class _ProfilScreenState extends State<ProfileScreen> {
                             ),
                             const SizedBox(height: 20),
                             TextFormField(
-                              controller: _usernameCtrl,
+                              controller: _authornameCtrl,
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'Isi username';
+                                  return 'Isi authorname';
                                 } else if (value.length > 8 ||
                                     value.length < 3) {
                                   return "min. 3-8 huruf";
@@ -112,8 +114,8 @@ class _ProfilScreenState extends State<ProfileScreen> {
                                 return null;
                               },
                               decoration: const InputDecoration(
-                                hintText: 'Username',
-                                label: Text("Username"),
+                                hintText: 'authorname',
+                                label: Text("authorname"),
                                 filled: true,
                                 border: InputBorder.none,
                               ),

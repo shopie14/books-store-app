@@ -1,21 +1,21 @@
+import 'package:book_tickets/data/books_data.dart';
+import 'package:book_tickets/modul/books/books_screen.dart';
+import 'package:book_tickets/widget/books_items.dart';
 import 'package:flutter/material.dart';
-import 'package:pertemuan_v/models/anime.dart';
 
-import '../../data/animes_data.dart';
-import '../../widget/news_item_widget.dart';
-import '../anime_list/anime_screen.dart';
+import '../../models/books.dart';
 
-class LatesNewsWidget extends StatelessWidget {
-  const LatesNewsWidget({
+class LatesBooks extends StatelessWidget {
+  const LatesBooks({
     super.key,
   });
 
-  Future<List<News>> getdataNews() async {
-    List<News> newslist = [];
+  Future<List<Books>> getdataNews() async {
+    List<Books> bookslist = [];
     await Future.delayed(const Duration(seconds: 2), () {
-      newslist = newsData;
+      bookslist = booksData;
     });
-    return newslist;
+    return bookslist;
   }
 
   @override
@@ -23,16 +23,16 @@ class LatesNewsWidget extends StatelessWidget {
     return Column(
       children: [
         ListTile(
-          title: const Text("Lates News"),
+          title: const Text("Lates Book"),
           trailing: IconButton(
               onPressed: () {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) {
                   return Scaffold(
                     appBar: AppBar(
-                      title: Text("News"),
+                      title: Text("Book"),
                     ),
-                    body: const NewsScreen(),
+                    body: const BooksScreen(),
                   );
                 }));
               },
@@ -54,8 +54,8 @@ class LatesNewsWidget extends StatelessWidget {
                 child: Column(
                     children: List.generate(
                         3,
-                        (int i) => NewsItemWidget(
-                              news: newsData[i],
+                        (int i) => BooksItems(
+                              books: booksData[i],
                             ))),
               );
             }

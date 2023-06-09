@@ -16,7 +16,7 @@ class BooksScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold))),
         Column(
           children:
-              booksData.map((Books books) => BooksItems(Books: books)).toList(),
+              booksData.map((Books books) => BooksItems(books: books)).toList(),
         )
       ],
     );

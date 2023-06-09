@@ -1,17 +1,17 @@
+import 'package:book_tickets/modul/books/books_screen.dart';
+import 'package:book_tickets/modul/home/hot_book.dart';
+import 'package:book_tickets/modul/home/lates_books.dart';
+import 'package:book_tickets/modul/home/search_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:pertemuan_v/modul/menu/menu_screen.dart';
-import 'package:pertemuan_v/modul/anime_list/anime_screen.dart';
+import '../../models/author.dart';
 
-import '../../models/user.dart';
+import '../menu/menu_screen.dart';
 import 'header_widget.dart';
-import 'hotanime_widget.dart';
-import 'lates_anime_widget.dart';
-import 'searchbar_widget.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key, required this.user});
+  HomeScreen({super.key, required this.author});
 
-  User user;
+  Author author;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -41,13 +41,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     CircleAvatar(
                       radius: 60,
-                      foregroundImage: NetworkImage(widget.user.profileImage!),
+                      foregroundImage:
+                          NetworkImage(widget.author.profileImage!),
                     ),
-                    Text(widget.user.name,
+                    Text(widget.author.name,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                         )),
-                    Text(widget.user.email),
+                    Text(widget.author.email),
                   ],
                 )),
             Card(
@@ -68,14 +69,14 @@ class _HomeScreenState extends State<HomeScreen> {
               physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
-                  HeaderWidget(data: widget.user),
+                  HeaderWidget(data: widget.author),
                   const SearchbarWidget(),
-                  const HotNewsWidget(),
-                  const LatesNewsWidget()
+                  const HotBooks(),
+                  const LatesBooks()
                 ],
               ),
             ),
-            const NewsScreen(),
+            const BooksScreen(),
             const MenuScreen(),
           ],
         ),
@@ -94,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
           icon: Icon(Icons.home),
         ),
         BottomNavigationBarItem(
-          label: "News",
+          label: "Books",
           icon: Icon(Icons.newspaper),
         ),
         BottomNavigationBarItem(

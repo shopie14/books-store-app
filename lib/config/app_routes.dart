@@ -1,8 +1,9 @@
+import 'package:go_router/go_router.dart';
 
 class AppRoutes {
   static const String splash = 'splash';
   static const String home = 'home';
-  static const String newDetail = 'news-detail';
+  static const String booksDetails = 'books-details';
   static const String profile = 'profile';
 
   static Page _splashScreenRouteBuilder(
@@ -19,7 +20,7 @@ class AppRoutes {
     BuildContext context,
     GoRouterState state,
   ) {
-    late User user;
+    late Author user;
     if (state.extra != null && state.extra is User) {
       user = state.extra as User;
     } else {
@@ -43,7 +44,7 @@ class AppRoutes {
     );
   }
 
-  static Page _newDetailRouteBuilder(
+  static Page _booksDetailsRouteBuilder(
     BuildContext context,
     GoRouterState state,
   ) {
@@ -97,9 +98,9 @@ class AppRoutes {
         pageBuilder: _homeScreenRouteBuilder,
       ),
       GoRoute(
-        name: newDetail,
-        path: "/news-detail/:id",
-        pageBuilder: _newDetailRouteBuilder,
+        name: booksDetails,
+        path: "/books-details/:id",
+        pageBuilder: _booksDetailsRouteBuilder,
       ),
       GoRoute(
         name: profile,

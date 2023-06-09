@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:pertemuan_v/models/anime.dart';
+import '../../models/books.dart';
 
-class NewsDetailScreen extends StatefulWidget {
-  final News news;
+class BooksDetails extends StatefulWidget {
+  final Books books;
 
-  NewsDetailScreen({Key? key, required this.news}) : super(key: key);
+  const BooksDetails({Key? key, required this.books}) : super(key: key);
 
   @override
-  _NewsDetailScreenState createState() => _NewsDetailScreenState();
+  // ignore: library_private_types_in_public_api
+  _BooksDetailsState createState() => _BooksDetailsState();
 }
 
-class _NewsDetailScreenState extends State<NewsDetailScreen> {
+class _BooksDetailsState extends State<BooksDetails> {
   int _rating = 0;
 
   @override
@@ -23,10 +24,10 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: ListView(
           children: [
-            Image.network(widget.news.image!),
+            Image.network(widget.books.image!),
             const SizedBox(height: 1),
             Text(
-              widget.news.title!,
+              widget.books.title!,
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -36,7 +37,7 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
             Row(
               children: [
                 InkWell(
-                  child: Icon(
+                  child: const Icon(
                     Icons.star,
                     color: Colors.yellow,
                     size: 24.0,
@@ -60,7 +61,7 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
             ),
             const SizedBox(height: 1),
             Text(
-              widget.news.description!,
+              widget.books.description!,
               textAlign: TextAlign.justify,
             ),
           ],
