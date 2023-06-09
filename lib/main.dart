@@ -1,25 +1,31 @@
-import 'package:book_tickets/screens/bottom_bar.dart';
-import 'package:book_tickets/utils/app_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
-  runApp(const MyApp());
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+    ),
+  );
+  runApp(const MainApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-     
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       theme: ThemeData(
-        primaryColor: primary,
+        useMaterial3: true,
+        colorSchemeSeed: Colors.white,
       ),
-      home: const BottomBar(),
+      title: "News Apps",
+      routeInformationProvider: AppRoutes.goRouter.routeInformationProvider,
+      routerDelegate: AppRoutes.goRouter.routerDelegate,
+      routeInformationParser: AppRoutes.goRouter.routeInformationParser,
     );
   }
 }
