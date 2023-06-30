@@ -1,7 +1,9 @@
 # About App
-Ini merupakan application habit tracker yang dibuat selama kurang lebih 1 bulan.
+Ini merupakan application habit tracker yang dibuat untuk memenuhi salah satu tugas besar pemrograman mobile dan praktikum pemrograman mobile. 
 
-# View habit tracker App??
+Untuk menggunakan aplikasi ini bisa di download file yang berextension .apk
+
+#view habit tracker App??
 ![Home](/lib/assets/home-page.jpeg){width="100px"}
 ![Dark Mode](/lib/assets/dark-home-page.jpeg){width="100px"}
 ![About](/lib/assets/about.jpeg){width="100px"}
