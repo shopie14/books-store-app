@@ -1,6 +1,6 @@
 {
-    "name": "book_tickets",
-    "short_name": "book_tickets",
+    "name": "habits_tracker",
+    "short_name": "habits_tracker",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

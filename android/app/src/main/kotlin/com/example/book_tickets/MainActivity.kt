@@ -1,4 +1,4 @@
-package com.example.book_tickets
+package com.example.habits_tracker
 
 import io.flutter.embedding.android.FlutterActivity
 
